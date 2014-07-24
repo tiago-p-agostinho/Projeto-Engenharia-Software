@@ -1,0 +1,132 @@
+package pt.ist.rest.domain;
+
+
+class Rest{
+	Integer IDPrato;
+	Integer limitePrecoPrato;
+	String nome;
+	Integer nif;
+}
+
+class Utilizador{
+  String username;
+	String password;
+	String nome;
+}
+
+class Cliente extends Utilizador{
+  
+	String morada;
+	String email;
+	Integer nif;
+  Integer saldo;
+
+}
+
+class Gestor extends Utilizador;
+    
+
+class Restaurante {
+  String nome;
+  String morada;
+ }
+
+ class Prato {
+  String nome;
+  Integer preco;
+  Integer calorias;
+  Integer IDPrato;
+ 
+ }
+ 
+ class Compra {
+   Integer custo; 
+   Integer confirma; 
+ }
+ 
+ class Item {
+   Integer quantidade;
+ }
+ 
+ 
+ class Alimento{
+  String tipo;
+  String descricao;
+ }
+
+relation PratoContainsAlimentos {
+  Prato playsRole prato;
+  Alimento playsRole alimento {
+    multiplicity *;
+  }
+} 
+
+relation RestauranteContainsPratos {
+  Restaurante playsRole restaurante{
+    multiplicity 1;
+  }
+  Prato playsRole prato {
+    multiplicity *;
+  }
+}
+
+relation ClienteContainsPratos{
+   Cliente playsRole cliente{
+    multiplicity *;
+   }
+   Prato playsRole prato {
+     multiplicity *;
+   
+   }
+} 
+
+relation ItemContainsPratos{
+    Item playsRole item {
+	  multiplicity *;
+	}
+	Prato playsRole prato {
+	  multiplicity 1;
+	}
+} 
+
+relation RestContainsRestaurantes {
+  Rest playsRole rest {
+  multiplicity 1;
+  }
+  Restaurante playsRole restaurante {
+    multiplicity *;
+  }
+}
+
+relation RestContainsClientes {
+  Rest playsRole rest;
+  Cliente playsRole cliente {
+    multiplicity *;
+  }
+}
+
+
+relation RestauranteContainsGestors {
+   Restaurante playsRole restaurante;
+   Gestor playsRole gestor {
+     multiplicity *; 
+   }
+ }
+ 
+relation CompraContainsItems {
+    Compra playsRole compra{
+	  multiplicity 1;
+	}
+	Item playsRole item{
+	  multiplicity *;
+	}
+}
+ 
+relation ClienteContainsCompras {
+    Cliente playsRole cliente{
+	 multiplicity 1;
+	}
+	Compra playsRole compra{
+      multiplicity *;
+    }	
+ }
